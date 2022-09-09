@@ -27,8 +27,11 @@ public class Human {
 	}
 	int calculateCurrentAgeInYears() {
 		LocalDate now = LocalDate.now();
-		//LocalDate birthDay = new LocalDate(birthMonth, birthMonth, birthMonth);
-		return 2022;
+		LocalDate x = LocalDate.create(birthYear, birthMonth, birthDay);
+		Period period = Period.between( , now);
+		
+		LocalDate birthDay = new LocalDate(birthMonth, birthMonth, birthMonth);
+		return period.getYears();
 	}
 	
 	//Accessors
