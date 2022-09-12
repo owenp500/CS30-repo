@@ -40,7 +40,7 @@ public class Introducer {
 					introduction = String.format("%s %s belongs to %s's homeroom, which is in room %d.",introduction, pronoun, abeStudent.getHomeRoomTeacher(), abeStudent.getHomeRoom());
 				}
 				catch(NullPointerException e) {
-					
+			
 				}
 				
 			}
