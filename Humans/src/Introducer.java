@@ -2,9 +2,9 @@ import java.util.Random;
 public class Introducer {
 	public String createPublicIntroduction(Human human) {
 		
-		String introduction = String.format("I am pleased to introduce %s %s.", human.getFirstName(), human.getLastName());
+		String introduction;
 		try {
-			
+			introduction = String.format("I am pleased to introduce %s %s.", human.getFirstName(), human.getLastName());
 			String pronoun;
 			switch(human.getGender()) {
 			case MALE:
@@ -38,23 +38,22 @@ public class Introducer {
 				
 				if(youth instanceof WilliamAberhartStudent) {
 					WilliamAberhartStudent abeStudent = (WilliamAberhartStudent) human;
-					
-					
 					String homeRoomTeacher = abeStudent.getHomeRoomTeacher();
 					if (homeRoomTeacher == null) {
 						introduction = String.format("%s Their homeroom is unknown at this time.",introduction);
 					}
-					introduction = String.format("%s %s belongs to %s's homeroom, which is in room %d.",introduction, pronoun, homeRoomTeacher, abeStudent.getHomeRoom());
+					else {
+						introduction = String.format("%s %s belongs to %s's homeroom, which is in room %d.",introduction, pronoun, homeRoomTeacher, abeStudent.getHomeRoom());
+					}
 					
 				}
 			}
 		}
-		catch(NullPointerException e) {
-			
+		catch(Exception e) {
+			introduction = "This person has issues and can't be introduced.";
 		}
-		
-		
 		return introduction;
+		
 	}
 }
 //introduction = String.format("I am pleased to introduce %s %s.", human.getFirstName(), human.getLastName());

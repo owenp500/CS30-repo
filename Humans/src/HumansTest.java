@@ -247,7 +247,6 @@ public class HumansTest extends TestCase {
 		assertEquals(GOSLING_INDTRODUCTION, introducer.createPublicIntroduction(gosling));
 
 		ConfusedNameHuman heywood = new ConfusedNameHuman(1990, 1, 1, "Hugh", "Jazz", Gender.MALE);
-		System.out.println(introducer.createPublicIntroduction(heywood));
 		assertEquals("This person has issues and can't be introduced.", introducer.createPublicIntroduction(heywood));
 
 	}
