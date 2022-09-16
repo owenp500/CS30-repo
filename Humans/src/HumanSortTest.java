@@ -53,6 +53,7 @@ public class HumanSortTest extends TestCase {
 		Human human = new Human(1998, 04, 26, "Sine", "Nomine", Gender.FEMALE);
 		Adult adult = new Adult(1998, 04, 26, "Sine", "Nomine", Gender.FEMALE,"Some Company", "Some Job");
 		Youth youth = new Youth(1998, 04, 26, "Sine", "Nomine", Gender.FEMALE, 12, "Some School");
+		
 		WilliamAberhartStudent abeStudent = new WilliamAberhartStudent(1998, 04, 26, "Sine", "Nomine", Gender.FEMALE, 12, 310, "Wehnes");;
 		
 		assertEquals(true, assemblyOrder.compare(abeStudent,youth) < 0);		

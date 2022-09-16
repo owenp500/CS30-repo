@@ -4,7 +4,6 @@ import java.time.Period;
 import java.util.Comparator;
 
 public class Human implements Comparator{
-	public static final Comparator<Human> AGE_ORDER = (Comparator<Human>) new AgeOrder();
 	private int birthYear;
 	private int birthMonth;
 	private int birthDay;
@@ -14,6 +13,10 @@ public class Human implements Comparator{
 	
 	private Gender gender;
 	
+	public static final Comparator<Human> AGE_ORDER = new AgeOrder();
+	public static final Comparator<Human> ASSEMBLY_ORDER = new AssemblyOrder();
+	public static final Comparator<Human> NAME_ORDER = new NameOrder();
+
 	
 	public Human(int birthYear, int birthMonth, int birthDay, String firstName, String lastName, Gender gender) {
 		this.birthYear = birthYear;
