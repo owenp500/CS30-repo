@@ -3,7 +3,8 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.util.Comparator;
 
-public class Human {
+public class Human implements Comparator{
+	public static final Comparator<Human> AGE_ORDER = (Comparator<Human>) new AgeOrder();
 	private int birthYear;
 	private int birthMonth;
 	private int birthDay;
@@ -12,7 +13,6 @@ public class Human {
 	private String lastName;
 	
 	private Gender gender;
-	
 	
 	
 	public Human(int birthYear, int birthMonth, int birthDay, String firstName, String lastName, Gender gender) {
@@ -67,5 +67,9 @@ public class Human {
 	}
 	public void setGender(Gender gender) {
 		this.gender = gender;
+	}
+	@Override
+	public int compare(Object o1, Object o2) {
+		return 0;
 	}
 }
