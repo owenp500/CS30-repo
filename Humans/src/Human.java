@@ -13,7 +13,9 @@ public class Human {
 	
 	private Gender gender;
 	
-	
+	public static final Comparator<Human> AGE_ORDER = new AgeOrder();
+	public static final Comparator<Human> ASSEMBLY_ORDER = new AssemblyOrder();
+	public static final Comparator<Human> NAME_ORDER = new NameOrder();
 	
 	public Human(int birthYear, int birthMonth, int birthDay, String firstName, String lastName, Gender gender) {
 		this.birthYear = birthYear;
