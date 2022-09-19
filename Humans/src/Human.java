@@ -3,7 +3,8 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.util.Comparator;
 
-public class Human implements Comparator{
+
+public class Human implements Comparator, Comparable<Human>{
 	private int birthYear;
 	private int birthMonth;
 	private int birthDay;
@@ -74,5 +75,11 @@ public class Human implements Comparator{
 	@Override
 	public int compare(Object o1, Object o2) {
 		return 0;
+	}
+	@Override
+	public int compareTo(Human human) {
+	Comparator<Human> comparator = (Comparator) new AgeOrder();
+	int comparison = comparator.compare(this,human );
+		return comparison;
 	}
 }
