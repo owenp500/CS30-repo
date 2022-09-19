@@ -5,6 +5,7 @@ public class NameOrder implements Comparator<Human> {
 	
 	public int compare(Human human1, Human human2) {
 		if( )
+		
 		return 0;
 	}
 
