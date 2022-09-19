@@ -22,10 +22,10 @@ public class AgeOrder implements Comparator<Human>{
 	public int compare(Human human1, Human human2) {
 		int comparison = 0;
 		if(human1.getBirthYear() < human2.getBirthYear()) {
-			comparison = +1;
+			comparison = -1;
 		}
 		else if(human1.getBirthYear() > human2.getBirthYear()) {
-			comparison = -1;
+			comparison = 1;
 		}
 		else if(human1.getBirthMonth() > human2.getBirthMonth()) {
 			comparison = +1;

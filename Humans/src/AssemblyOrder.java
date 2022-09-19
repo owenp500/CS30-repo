@@ -28,7 +28,10 @@ public class AssemblyOrder implements Comparator<Human> {
 		else if (human2 instanceof Adult || human2 instanceof Youth) {
 			comparison = +1;
 		}
-		
+		if (comparison == 0) {
+			Comparator<Human> comparator = new NameOrder();
+			comparison = comparator.compare(human1,human2);
+		}
 		return comparison;
 	}
 }

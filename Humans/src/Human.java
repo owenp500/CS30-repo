@@ -72,13 +72,11 @@ public class Human implements Comparator, Comparable<Human>{
 	public void setGender(Gender gender) {
 		this.gender = gender;
 	}
-	@Override
 	public int compare(Object o1, Object o2) {
 		return 0;
 	}
-	@Override
 	public int compareTo(Human human) {
-	Comparator<Human> comparator = (Comparator) new AgeOrder();
+	Comparator<Human> comparator = (Comparator<Human>) new AgeOrder();
 	int comparison = comparator.compare(this,human );
 		return comparison;
 	}

@@ -161,7 +161,8 @@ public class HumanSortTest extends TestCase {
 
 		Comparator<Human> c = Human.ASSEMBLY_ORDER;
 		Human[] humans = createHumans();
-
+		System.out.println("\n unsorted humans");
+		printHumans(humans);
         Arrays.sort(humans, c);
 
         System.out.println("\ntestSortByAsemblyOrder");
