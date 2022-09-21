@@ -1,21 +1,26 @@
-
+import java.lang.Math;
 public class IterativeSearcher {
 
 	public int doBinarySearch(IntegerArray arrayToSort, int i) {
-		int x = arrayToSort.length() / 2;
-		for (int j = 0; j < arrayToSort.length(); j++) {
-			int y = arrayToSort.read(x);
+		int length = arrayToSort.length();
+		int stake = ((length) / 2);
+		
+		for (int j = 0; j < length; j++) {
+			int y = arrayToSort.read(stake);
+			int difference = ((Math.floor(length/Math.pow(2,(j + 2)))) == 0) ? 1: 
+				(int) (length/Math.pow(2,(j + 2)));
+			
 			if(i < y) { 
-				x = x - (x/2);
+				stake -= difference;
 			}
 			else if (i > y) {
-				x = x + (x/2);
+				stake  += difference;
 			}
 			else { 
-				return x; 
+				return stake; 
 			}
 		}
-		return 0;
+		return -1;
 	}
 
 }
