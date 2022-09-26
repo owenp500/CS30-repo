@@ -8,8 +8,9 @@ public class IterativeSearcher {
 			int mid = (low + high)/2;
 			int j = arrayToSearch.read(mid);
 			if (i == j) {
-				for(int x = 0; x < (mid - low); x++) {
-					if (arrayToSearch.read(mid - x - 1) != i) {
+				for(int x = 0; x < (high - low); x++) {
+					int lowerIndex = (mid - x - 1 < 0) ? 0: mid - x - 1; 
+					if (arrayToSearch.read(lowerIndex) != i || lowerIndex == 0) {
 						return mid - x;
 					}
 				}
@@ -25,28 +26,3 @@ public class IterativeSearcher {
 		
 	}
 }
-	/*
-int length = arrayToSort.length();
-		int stake = ((length) / 2);
-		
-		for (int j = 0; j < length; j++) {
-			int y = arrayToSort.read(stake);
-			
-			int difference = ((Math.floor(length/Math.pow(2,(j + 2)))) == 0) ? 1: 
-				(int) (length/Math.pow(2,(j + 2)));
-			if (Math.floor(length/Math.pow(2, j)) == 0) {
-				difference = 1;
-			}
-			if(i < y) { 
-				stake -= difference;
-			}
-			else if (i > y) {
-				stake  += difference;
-			}
-			else { 
-				return stake; 
-			}
-		}
-		return -1;
-	}
-*/
