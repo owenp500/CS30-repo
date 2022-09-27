@@ -1,17 +1,40 @@
-import java.util.ArrayList;
-import java.util.Arrays;
 public class Merger {
 	
 	public int[] doMerge(int[] a, int[] b) {
-		int[] ab = new int[(a.length + b.length)];
-		
-		for (int i = 0; i < a.length; i++) {
-			ab[i] = a[i];
+		if (a == null && b == null) {
+			return new int[0];
 		}
-		for (int i = 0; i < b.length; i++) {
-			ab[i + a.length] = b[i];
+		else if (a == null) {
+			return b;
 		}
-		 ArrayList<Integer> abList =new ArrayList<Integer>( Arrays.asList(ab));
+		else if(b == null) {
+			return a;
+		}
+		int[] ab = new int[a.length + b.length];	
+		int iA = 0;
+		int iB = 0;
+		int j = 0;
+		while (iA < a.length && iB < b.length) {
+			if(a[iA] < b[iB]) {
+				ab[j] = a[iA];
+				iA++;
+			}
+			else {
+				ab[j] = b[iB];
+				iB++;
+			}
+			j++;
+		}
+		while (iA < a.length) {
+			ab[j] = a[iA];
+			iA++;
+			j++;
+		}
+		while (iB < b.length) {
+			ab[j] = b[iB];
+			iB++;
+			j++;
+		}
 		return ab;
 	}
 }
