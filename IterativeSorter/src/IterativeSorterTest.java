@@ -151,4 +151,16 @@ public class IterativeSorterTest extends TestCase {
 		assertEquals(true, utility.verifySort(arrayToSort) );		
 	}
 	
+	public void testBubbleSorter() { 
+		int[] array = {4,3,7,4,4,5};
+		IntegerArray intArray = new IntegerArray(array);
+		sorter.doBubbleSort(intArray);
+		sorter.doBubbleSort(intArray);
+		sorter.doBubbleSort(intArray);
+		sorter.doBubbleSort(intArray);
+		sorter.doBubbleSort(intArray);
+		assertEquals(3,intArray.read(0));
+		assertEquals(true, utility.verifySort(intArray));
+		
+	}
 }
