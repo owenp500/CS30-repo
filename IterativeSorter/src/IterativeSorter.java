@@ -18,10 +18,20 @@ public class IterativeSorter {
 	
 	public void doSelectionSort(IntegerArray arrayToSort) {
 		int length = arrayToSort.length();
-		int minValue = arrayToSort.read(length);
-		int maxValue = ArrayToSort.read()
-		  for(int i = 0; i < arrayToSort.length(); i++) {
-			  
+		
+		  for(int i = 0; i < length; i++) {
+			  int minValue = arrayToSort.read(i);
+			  int nextRead;
+			  int indexMinValue = i;
+			 for(int j = 1; j < length; j++) {
+				nextRead = arrayToSort.read(j);
+				if(minValue > nextRead) {
+					minValue = nextRead;
+					indexMinValue = j;
+				}
+			 }
+			 arrayToSort.write(i,minValue);
+			 arrayToSort.write(indexMinValue, nextRead);
 		  }
 	}
 
