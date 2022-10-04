@@ -38,10 +38,14 @@ public class IterativeSorter {
 
 	public void doInsertionSort(IntegerArray arrayToSort) {
 		int length = arrayToSort.length();
-		for(int i = 0; i < length; i++) {
-			  
+		for(int i = 1; i < length; i++) {
+			  int read = arrayToSort.read(i);
+			  int nextRead;
 			 for(int j = i; j < length; j++) {
-				
+				 nextRead = arrayToSort.read(i-j);
+				if(read < nextRead) {
+					
+				}
 				
 			 } 
 			 
