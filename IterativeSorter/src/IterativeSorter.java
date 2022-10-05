@@ -41,18 +41,15 @@ public class IterativeSorter {
 		for(int i = 1; i < length; i++) {
 			  int read = arrayToSort.read(i);
 			  int nextRead;
-			 for(int j = i; j < length; j++) {
-				 nextRead = arrayToSort.read(i-j);
+			 for(int j = 0 ; j <i; j++) {
+				 nextRead = arrayToSort.read(i-j-1);
 				if(read < nextRead) {
-					
+					arrayToSort.write(i-j-1, read);
+					arrayToSort.write(i-j, nextRead);
 				}
 				
 			 } 
 			 
 		  }
-	}
-	
-	private void swap(int indexA, int indexB, IntegerArray arrayToSwap) {
-		
 	}
 }
