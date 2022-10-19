@@ -5,8 +5,17 @@ public class RecursiveSearcher {
 
 	public int doBinarySearch(IntegerArray arrayOfInts, int target) {
 		int high = arrayOfInts.length();
+		int index = doBinarySearch(arrayOfInts, target, 0, high);
+		if(index > 0) {
+			boolean lowerTargetIndex = (arrayOfInts.read(index -1) == target);
+			while(lowerTargetIndex){
+				 index--;
+				 lowerTargetIndex = (arrayOfInts.read(index -1) == target);
+			} 
+		}
 		
-		return doBinarySearch(arrayOfInts, target, 0, high);
+		
+		return index;
 	}
 	private int doBinarySearch(IntegerArray arrayOfInts, int target, int low,int high) {
 		int mid  = (high + low) / 2;
@@ -26,5 +35,4 @@ public class RecursiveSearcher {
 		}
 		return -1;
 	}
-	
 }
