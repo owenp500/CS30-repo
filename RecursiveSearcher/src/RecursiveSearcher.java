@@ -8,7 +8,7 @@ public class RecursiveSearcher {
 		int index = doBinarySearch(arrayOfInts, target, 0, high);
 		if(index > 0) {
 			boolean lowerTargetIndex = (arrayOfInts.read(index -1) == target);
-			while(lowerTargetIndex){
+			while(lowerTargetIndex && index > 1){
 				 index--;
 				 lowerTargetIndex = (arrayOfInts.read(index -1) == target);
 			} 

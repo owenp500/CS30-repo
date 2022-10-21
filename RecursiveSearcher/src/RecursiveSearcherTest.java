@@ -70,7 +70,7 @@ public class RecursiveSearcherTest extends TestCase {
 	private int[] buildArrayToSearch() {
 
 		return new int[] {
-				2,		3,		3,		4,		4,		6,		6,		7,		7,		9,		// index 00000  to 00009
+				2,		2,		3,		4,		4,		6,		6,		7,		7,		9,		// index 00000  to 00009
 				10,		10,		10,		12,		12,		16,		16,		18,		18,		18,		// index 00010  to 00019
 				19,		19,		20,		20,		20,		20,		21,		21,		22,		24,		// index 00020  to 00029
 				25,		26,		26,		26,		27,		27,		32,		33,		33,		34,		// index 00030  to 00039
