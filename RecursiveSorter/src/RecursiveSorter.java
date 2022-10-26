@@ -11,9 +11,10 @@ public class RecursiveSorter {
 		IntegerArray higherArray;
 		for(int i = 0; i < pivotIndex; i++) {
 			if(clone.read(i) < pivot) {
-				lowerArray.write(, i);
+			
 			}
 			else { 
+				
 				//put into higher half array or sum
 			}
 		}
