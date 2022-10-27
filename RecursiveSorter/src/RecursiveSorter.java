@@ -7,11 +7,11 @@ public class RecursiveSorter {
 		Random rand = new Random();
 		int pivotIndex = rand.nextInt(0, clone.length() - 1);
 		int pivot = clone.read(pivotIndex);
-		IntegerArray lowerArray;
-		IntegerArray higherArray;
+		int[] lowerArray;
+		int[] higherArray;
 		for(int i = 0; i < pivotIndex; i++) {
 			if(clone.read(i) < pivot) {
-			
+		
 			}
 			else { 
 				
