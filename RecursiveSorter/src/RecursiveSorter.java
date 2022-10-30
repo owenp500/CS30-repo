@@ -1,37 +1,30 @@
-import java.util.Random;
-
 public class RecursiveSorter {
 	
 	public void doQuickSort(IntegerArray clone) {
-		
-		Random rand = new Random();
-		int pivotIndex = rand.nextInt(0, clone.length() - 1);
-		int pivot = clone.read(pivotIndex);
-		int[] lowerArray;
-		int[] higherArray;
-		for(int i = 0; i < pivotIndex; i++) {
-			if(clone.read(i) < pivot) {
-		
-			}
-			else { 
-				
-				//put into higher half array or sum
-			}
-		}
-		for(int i = pivotIndex + 1; i < clone.length(); i++) {
-			if (clone.read(i) < pivot) {
-				
-			}
-			else {
-				
+		int pivot = clone.read(0);
+		for(int left = 1; left < clone.length(); left++) {
+			int right = clone.length() - 1;
+			
+			int atLeft = clone.read(left);
+			if(atLeft >= pivot) {
+				int atRight = clone.read(right);
+				while (atRight >= pivot) {
+				right --;
+				atRight = clone.read(right);
+				}
+				//swap left and right pointers
+				clone.write(atLeft , right);
+			    clone.write(atRight, left);
 			}
 		}
 		
-		
+	}
+	public void doQuicksort(integerArray clone, int ) {
 		
 	}
 
 	public void doMergeSort(IntegerArray array) {
+		
 	}
 
 }
