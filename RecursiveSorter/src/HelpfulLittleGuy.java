@@ -2,14 +2,15 @@
 public class HelpfulLittleGuy {
 	static SorterUtilities util = new SorterUtilities();
 	public static void main(String[] args) {
-		IntegerArray arr = util.createRandomArray(10);
+		int arraySize = 12;
+		IntegerArray arr = util.createRandomArray(arraySize);
 		
 		System.out.println("original array:");
 		for(int i = 0; i < arr.length(); i++) {
 			System.out.printf("%d  ", arr.read(i));
 		}
 		System.out.println("\n\npartitioned array");
-		doPartition(arr,0,9);
+		doPartition(arr,0,arraySize - 1);
 		for(int i = 0; i < arr.length(); i++) {
 			System.out.printf("%d  ", arr.read(i));
 		}
@@ -17,12 +18,11 @@ public class HelpfulLittleGuy {
 	}
 	private static void doPartition(IntegerArray clone, int low, int high) {
 		int pivot = clone.read(low);
-		int right = high;	 
-		for(int left = low + 1; left < high; left++) {
-			
-			
+		int right = high;
+		if((high - low) > 1) {
+		for(int left = low + 1; left <= high; left++) {	
 			int atLeft = clone.read(left);
-			if(atLeft >= pivot) {
+			if(atLeft >= pivot || left == right) {
 				int atRight = clone.read(right);
 				while (atRight >= pivot && right > left) {
 				right --;
@@ -45,10 +45,8 @@ public class HelpfulLittleGuy {
 			}
 			
 		}
-			if(high - low >= 1) {
 			doPartition(clone, right,high);
 			doPartition(clone, low, right - 2);
 		}
-			
 	}
 }
