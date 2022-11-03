@@ -26,9 +26,7 @@ public class RecursiveSorter {
 					clone.write(left - 1,pivot );
 					break;
 				}
-				
-//green needle
-				
+								
 			}
 			
 		}
