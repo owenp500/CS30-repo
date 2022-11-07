@@ -4,12 +4,10 @@ public class HelpfulLittleGuy {
 	public static void main(String[] args) {
 		int arraySize = 12;
 		IntegerArray arr = util.createRandomArray(arraySize);
-		
-		System.out.println("original array:");
 		for(int i = 0; i < arr.length(); i++) {
 			System.out.printf("%d  ", arr.read(i));
 		}
-		System.out.println("\n\npartitioned array");
+		System.out.println();
 		doPartition(arr,0,arraySize - 1);
 		for(int i = 0; i < arr.length(); i++) {
 			System.out.printf("%d  ", arr.read(i));
@@ -22,7 +20,10 @@ public class HelpfulLittleGuy {
 		if((high - low) > 1) {
 		for(int left = low + 1; left <= high; left++) {	
 			int atLeft = clone.read(left);
-			if(atLeft >= pivot || left == right) {
+			/*if (left == right) {
+				//do something 
+			}
+			else */if(atLeft >= pivot ||left == right) {
 				int atRight = clone.read(right);
 				while (atRight >= pivot && right > left) {
 				right --;

@@ -6,7 +6,7 @@ public class RecursiveSorter {
 	private void doQuickSort(IntegerArray clone, int low, int high) {
 		int pivot = clone.read(low);
 		int right = high;
-		if((high - low) > 1) {
+		
 		for(int left = low + 1; left <= high; left++) {	
 			int atLeft = clone.read(left);
 			if(atLeft >= pivot || left == right) {
@@ -30,6 +30,7 @@ public class RecursiveSorter {
 			}
 			
 		}
+		if((high - low) > 1) {
 			doQuickSort(clone,right, high);
 			doQuickSort(clone, low, right - 2);
 		}
