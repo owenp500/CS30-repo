@@ -2,7 +2,7 @@
 public class HelpfulLittleGuy {
 	static SorterUtilities util = new SorterUtilities();
 	public static void main(String[] args) {
-		int arraySize = 11;
+		int arraySize = 14;
 		IntegerArray arr = util.createRandomArray(arraySize);
 		for(int i = 0; i < arr.length(); i++) {
 			System.out.printf("%d  ", arr.read(i));
@@ -17,13 +17,16 @@ public class HelpfulLittleGuy {
 	private static void doPartition(IntegerArray clone, int low, int high) {
 		int pivot = clone.read(low);
 		int right = high;
-		if((high - low) > 1) {
+		if((high - low) >= 1) {
 		for(int left = low + 1; left <= high; left++) {	
 			int atLeft = clone.read(left);
-			/*if (left == right) {
-				//do something 
+			if (left == right && atLeft < pivot) {
+				//swap pivot with left/right pointer
+				clone.write(low ,clone.read(left ) );
+				clone.write(left ,pivot );
+				break;
 			}
-			else */if(atLeft >= pivot ||left == right) {
+			if(atLeft >= pivot ||left == right) {
 				int atRight = clone.read(right);
 				while (atRight >= pivot && right > left) {
 				right --;
