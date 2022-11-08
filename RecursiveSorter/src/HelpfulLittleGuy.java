@@ -2,7 +2,7 @@
 public class HelpfulLittleGuy {
 	static SorterUtilities util = new SorterUtilities();
 	public static void main(String[] args) {
-		int arraySize = 12;
+		int arraySize = 11;
 		IntegerArray arr = util.createRandomArray(arraySize);
 		for(int i = 0; i < arr.length(); i++) {
 			System.out.printf("%d  ", arr.read(i));
