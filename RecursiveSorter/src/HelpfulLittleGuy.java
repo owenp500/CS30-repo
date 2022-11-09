@@ -2,7 +2,7 @@
 public class HelpfulLittleGuy {
 	static SorterUtilities util = new SorterUtilities();
 	public static void main(String[] args) {
-		int arraySize = 14;
+		int arraySize = 1000;
 		IntegerArray arr = util.createRandomArray(arraySize);
 		for(int i = 0; i < arr.length(); i++) {
 			System.out.printf("%d  ", arr.read(i));
@@ -50,7 +50,7 @@ public class HelpfulLittleGuy {
 			
 		}
 			doPartition(clone, right,high);
-			doPartition(clone, low, right - 2);
+			doPartition(clone, low, right - 1);
 		}
 	}
 }
