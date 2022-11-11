@@ -40,7 +40,7 @@ public class RecursiveSorter {
 			doQuickSort(clone, low, right - 1);
 		}
 	}
-	
+
 	public void doMergeSort(IntegerArray array) {
 		//check for base case
 		
