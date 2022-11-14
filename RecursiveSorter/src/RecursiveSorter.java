@@ -43,12 +43,25 @@ public class RecursiveSorter {
 
 	public void doMergeSort(IntegerArray array) {
 		//check for base case
+		if(array.length() < 1) {
+			int mid = array.length() /2;
+			int[] lowArray = new int[mid];
+			for(int i = 0; i < mid; i++) {
+				lowArray[i] = array.read(i);
+			}
+			
+			int[] highArray = new int[array.length() - mid];
+			for(int i = mid; i < array.length(); i ++) {
+				highArray[i] = array.read(i);
+			}
+			//IntegerArray lowArray = new IntegerArray(lowArray);
+			//create two sub arrays
 		
-		//create two sub arrays
+			//doMergeSort recursively until length of one
 		
-		//doMergeSort recursively until length of one
+			//coming out of recursion doMerge function all the way up the stacks
+		}
 		
-		//coming out of recursion doMerge function all the way up the stacks
 		
 		
 	}
