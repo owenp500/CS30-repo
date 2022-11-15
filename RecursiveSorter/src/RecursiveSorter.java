@@ -42,64 +42,51 @@ public class RecursiveSorter {
 	}
 
 	public void doMergeSort(IntegerArray array) {
-		//check for base case
-		if(array.length() < 1) {
+		if(array.length() > 1) {
 			int mid = array.length() /2;
+			//create two sub arrays
 			int[] lowArray = new int[mid];
 			for(int i = 0; i < mid; i++) {
 				lowArray[i] = array.read(i);
 			}
-			
 			int[] highArray = new int[array.length() - mid];
 			for(int i = mid; i < array.length(); i ++) {
-				highArray[i] = array.read(i);
+				highArray[i - mid] = array.read(i);
 			}
-			//IntegerArray lowArray = new IntegerArray(lowArray);
-			//create two sub arrays
-		
+			IntegerArray lowIntArray = new IntegerArray(lowArray);
+			IntegerArray highIntArray = new IntegerArray(highArray);
 			//doMergeSort recursively until length of one
-		
-			//coming out of recursion doMerge function all the way up the stacks
+			doMergeSort(lowIntArray);
+			doMergeSort(highIntArray);
+			
+			//coming out of recursion doMerge all the way up 
+			doMerge(lowIntArray, highIntArray, array);
 		}
-		
-		
-		
-	}
-	public int[] doMerge(int[] a, int[] b) {
-		if (a == null && b == null) {
-			return new int[0];
-		}
-		else if (a == null) {
-			return b;
-		}
-		else if(b == null) {
-			return a;
-		}
-		int[] ab = new int[a.length + b.length];	
-		int iA = 0;
+	} 
+	public void doMerge(IntegerArray a, IntegerArray b, IntegerArray arr) {
+		int iA = 0;		
 		int iB = 0;
 		int j = 0;
-		while (iA < a.length && iB < b.length) {
-			if(a[iA] < b[iB]) {
-				ab[j] = a[iA];
-				iA++;
-			}
-			else {
-				ab[j] = b[iB];
-				iB++;
-			}
-			j++;
+		while (iA < a.length() && iB < b.length()) {
+		if(a.read(iA) < b.read(iB)) {
+			arr.write(j, a.read(iA));
+			iA++;
 		}
-		while (iA < a.length) {
-			ab[j] = a[iA];
+		else {
+			arr.write(j, b.read(iB));
+			iB++;
+		}
+		j++;
+		}
+		while (iA < a.length()) {
+			arr.write(j, a.read(iA));
 			iA++;
 			j++;
 		}
-		while (iB < b.length) {
-			ab[j] = b[iB];
+		while (iB < b.length()) {		
+			arr.write(j, b.read(iB));
 			iB++;
 			j++;
 		}
-		return ab;
 	}
 }
