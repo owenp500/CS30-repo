@@ -1,7 +1,8 @@
 
 public class LinkedList {
 	int size = 0;
-	Node node = new Node("Hello, world!", null, null);
+	Node previousNode;
+	Node firstNode;
 	
 	
 	
@@ -14,12 +15,11 @@ public class LinkedList {
 	
 	public void add(int i, String string) {
 		if(size == 0) {
-			new Node(string, null, null);
+			firstNode = new Node("String", null, null);
 		}
 		else {
 			
 		}
-		
 		size++;
 		//change pointers of neighbour and node being replaced to this node
 		
