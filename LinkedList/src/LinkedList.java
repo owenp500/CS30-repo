@@ -16,8 +16,13 @@ public class LinkedList {
 	public void add(int i, String string) {
 		if(size == 0) {
 			firstNode = new Node("String", null, null);
+			previousNode = firstNode;
 		}
 		else {
+			Node targetNode = firstNode;
+			for(int j = 0; j < i &&  j < size; j++) {
+				targetNode = targetNode.next;
+			}
 			
 		}
 		size++;
