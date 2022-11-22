@@ -1,4 +1,3 @@
-
 public class LinkedList {
 	int size = 0;
 	Node previousNode;
@@ -14,19 +13,23 @@ public class LinkedList {
 	}
 	
 	public void add(int i, String string) {
-		if(size == 0) {
-			firstNode = new Node(string, null, null);
-			previousNode = firstNode;
+		if(i > size || i < 0) {
+			throw new IndexOutOfBoundsException();
 		}
 		else {
-			Node targetNode = firstNode;
-			for(int j = 0; j < i - 1; j++) {
-				targetNode = targetNode.next;
+			if(size == 0) {
+				firstNode = new Node(string, null, null);
+				previousNode = firstNode;
 			}
-			targetNode.next = new Node(string, targetNode, null);
+			else {
+				Node targetNode = firstNode;
+				for(int j = 0; j < i - 1; j++) {
+					targetNode = targetNode.next;
+				}
+				targetNode.next = new Node(string, targetNode, null);
+			}
+			size++;
 		}
-		size++;
-
 		
 	}
 	public String toString() {
@@ -34,7 +37,7 @@ public class LinkedList {
 		Node targetNode = firstNode.next;
 		for (int i = 1; i < size; i++) {
 			string +=", " + targetNode.value  ;
-			targetNode = targetNode.next;
+			targetNode = targetNode.next; 
 		}
 		string += "]";
 		
@@ -52,17 +55,18 @@ public class LinkedList {
 	public void remove(int i) {
 		//removing a node will set the neighbour's pointers to each other
 		Node targetNode = firstNode;
-		for (int j = 0; j < i - 1; j++) {
+		for (int j = 0; j < i; j++) {
 			targetNode = targetNode.next;
-		}
+		}		
 		if(targetNode.previous != null) {
 			targetNode.previous.next = targetNode.next;
+		}
+		else {
+			firstNode = targetNode.next;
 		}
 		if(targetNode.next != null) {
 			targetNode.next.previous = targetNode.previous;
 		}
-
-
 		size--;
 	}
 
