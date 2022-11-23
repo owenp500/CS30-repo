@@ -96,7 +96,7 @@ public class LinkedListTest extends TestCase {
         assertEquals(4, list.size());
         assertEquals(true, list.get(0).equals("nine"));
         
-        list.remove(2);
+        list.remove(2); 
         assertEquals("[nine, eight, ten]", list.toString());
         assertEquals(3, list.size());
         assertEquals(true, list.get(2).equals("ten"));

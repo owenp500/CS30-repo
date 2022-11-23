@@ -1,6 +1,5 @@
 public class LinkedList {
 	int size = 0;
-	Node previousNode;
 	Node firstNode;
 	
 	
@@ -16,10 +15,15 @@ public class LinkedList {
 		if(i > size || i < 0) {
 			throw new IndexOutOfBoundsException();
 		}
+		
 		else {
 			if(size == 0) {
 				firstNode = new Node(string, null, null);
-				previousNode = firstNode;
+			}
+			else if (i == 0) {
+				Node node = new Node(string, null, firstNode);
+				firstNode.previous = node;
+				firstNode = node;
 			}
 			else {
 				Node targetNode = firstNode;
@@ -33,7 +37,7 @@ public class LinkedList {
 		
 	}
 	public String toString() {
-		String string = "[" + firstNode.value;
+		String string = "[" + firstNode.getValue();
 		Node targetNode = firstNode.next;
 		for (int i = 1; i < size; i++) {
 			string +=", " + targetNode.value  ;
@@ -71,6 +75,7 @@ public class LinkedList {
 	}
 
 	public void clear() {
+		firstNode = null;
 		size = 0;
 		
 	}
