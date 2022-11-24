@@ -1,6 +1,12 @@
-public class LinkedList {
-	int size = 0;
+import java.util.ListIterator;
+public class LinkedList implements ListIterator {
+	private int size = 0;
+	private int cursor = 0;
 	Node firstNode;
+	Node lastReturn;
+	boolean x = true;
+	
+	
 	
 	public int size() {
 		return size;
@@ -15,6 +21,7 @@ public class LinkedList {
 		else {
 			if(size == 0) {
 				firstNode = new Node(string, null, null);
+				lastReturn = firstNode;
 			}
 			else if (i == 0) {
 				Node node = new Node(string, null, firstNode);
@@ -82,5 +89,62 @@ public class LinkedList {
 			targetNode = targetNode.next;
 		}
 		targetNode.value = string;
+	}
+	@Override
+	public boolean hasNext() {
+		
+		return false;
+	}
+	@Override
+	public Object next() {
+		Node node;
+		if(x) {
+			node = lastReturn.previous;
+		}
+		else {
+		node = lastReturn;
+		}
+		cursor++;
+		return node;
+	}
+	@Override
+	public boolean hasPrevious() {
+		
+		return false;
+	}
+	@Override
+	public Object previous() {
+		Node node;
+		if(x) {
+			node = lastReturn ;
+		}
+		return null;
+	}
+	@Override
+	public int nextIndex() {
+		
+		return 0;
+	}
+	@Override
+	public int previousIndex() {
+		
+		return 0;
+	}
+	@Override
+	public void remove() {
+		
+		
+	}
+	@Override
+	public void set(Object e) {
+		set((String) e);
+	}
+	@Override
+	public void add(Object e) {
+		
+	}
+
+	public ListIterator listIterator() {
+		return this;
 	}	
 }

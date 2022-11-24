@@ -1,4 +1,4 @@
-//2021-05-03
+//2022-11-22
 import junit.framework.TestCase;
 import java.util.NoSuchElementException;
 
@@ -10,12 +10,12 @@ public class LinkedListTest extends TestCase {
 
         //TEST add(String element)
         assertEquals(0,list.size());        
-        list.add(0,"zero");
+        list.add("zero");
         assertEquals(1,  list.size());
-        list.add(1,"one");
-        list.add(2,"two");
-        list.add(3,"three");
-        list.add(4,"four");
+        list.add("one");
+        list.add("two");
+        list.add("three");
+        list.add("four");
         
         //TEST toString()
         assertEquals("[zero, one, two, three, four]", list.toString());        
@@ -96,7 +96,7 @@ public class LinkedListTest extends TestCase {
         assertEquals(4, list.size());
         assertEquals(true, list.get(0).equals("nine"));
         
-        list.remove(2); 
+        list.remove(2);
         assertEquals("[nine, eight, ten]", list.toString());
         assertEquals(3, list.size());
         assertEquals(true, list.get(2).equals("ten"));
