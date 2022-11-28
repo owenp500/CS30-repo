@@ -1,10 +1,12 @@
 import java.util.ListIterator;
+import java.util.NoSuchElementException;
+
 public class LinkedList implements ListIterator {
 	private int size = 0;
 	private int cursor = 0;
 	Node firstNode;
 	Node lastReturn;
-	boolean x = true;
+	int index = 0;
 	
 	
 	
@@ -21,7 +23,6 @@ public class LinkedList implements ListIterator {
 		else {
 			if(size == 0) {
 				firstNode = new Node(string, null, null);
-				lastReturn = firstNode;
 			}
 			else if (i == 0) {
 				Node node = new Node(string, null, firstNode);
@@ -90,45 +91,48 @@ public class LinkedList implements ListIterator {
 		}
 		targetNode.value = string;
 	}
+	
+	//iterator interface
 	@Override
 	public boolean hasNext() {
-		
-		return false;
+		return lastReturn.next != null;
 	}
 	@Override
 	public Object next() {
-		Node node;
-		if(x) {
-			node = lastReturn.previous;
+		
+		if(cursor < size) {
+			
+			String next = lastReturn.next.value;
+			lastReturn = lastReturn.next;
+			cursor++;
+			index = cursor -1;
+			return next;
 		}
-		else {
-		node = lastReturn;
-		}
-		cursor++;
-		return node;
+		else {throw new NoSuchElementException();}
+			
 	}
 	@Override
 	public boolean hasPrevious() {
 		
-		return false;
+		return lastReturn.previous != null;
 	}
 	@Override
 	public Object previous() {
-		Node node;
-		if(x) {
-			node = lastReturn ;
-		}
-		return null;
+		String prev = lastReturn.previous.value;
+		lastReturn = lastReturn.previous;
+		cursor--;
+		index = cursor + 1;
+		return prev;
 	}
 	@Override
 	public int nextIndex() {
 		
-		return 0;
+		return index + 1;
 	}
 	@Override
 	public int previousIndex() {
 		
-		return 0;
+		return index - 1;
 	}
 	@Override
 	public void remove() {
@@ -145,6 +149,7 @@ public class LinkedList implements ListIterator {
 	}
 
 	public ListIterator listIterator() {
+		lastReturn = new Node(null,null,firstNode);
 		return this;
 	}	
 }
