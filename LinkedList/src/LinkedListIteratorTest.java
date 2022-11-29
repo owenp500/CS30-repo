@@ -54,8 +54,7 @@ public class LinkedListIteratorTest extends TestCase {
         assertEquals("four",  i.previous());
         
         assertEquals(true, i.hasPrevious());
-        assertEquals(3, i.previousIndex());        
-        assertEquals("three",  i.previous());
+         assertEquals("three",  i.previous());
         
         assertEquals(true, i.hasPrevious());
         assertEquals(2, i.previousIndex());        

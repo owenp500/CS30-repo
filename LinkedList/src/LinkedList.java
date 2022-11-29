@@ -4,9 +4,10 @@ import java.util.NoSuchElementException;
 public class LinkedList implements ListIterator {
 	private int size = 0;
 	private int cursor = 0;
-	Node firstNode;
-	Node lastReturn;
-	int index = 0;
+	private int index = -1;
+	private Node firstNode;
+	private Node lastReturn;
+	
 	
 	
 	
@@ -60,7 +61,6 @@ public class LinkedList implements ListIterator {
 		}
 		return targetNode.value;
 	}
-
 	public void remove(int i) {
 		Node targetNode = firstNode;
 		for (int j = 0; j < i; j++) {
@@ -77,13 +77,11 @@ public class LinkedList implements ListIterator {
 		}
 		size--;
 	}
-
 	public void clear() {
 		firstNode = null;
 		size = 0;
 		
 	}
-
 	public void set(int i, String string) {
 		Node targetNode = firstNode;
 		for(int j = 0; j < i; j++) {
@@ -100,15 +98,19 @@ public class LinkedList implements ListIterator {
 	@Override
 	public Object next() {
 		
-		if(cursor < size) {
-			
+		if(cursor < size) {		
 			String next = lastReturn.next.value;
 			lastReturn = lastReturn.next;
 			cursor++;
-			index = cursor -1;
+			index ++;
 			return next;
 		}
-		else {throw new NoSuchElementException();}
+		else {
+			cursor++;
+			index ++;
+			lastReturn = new Node(null,lastReturn, null);
+			throw new NoSuchElementException();
+		}
 			
 	}
 	@Override
@@ -118,15 +120,22 @@ public class LinkedList implements ListIterator {
 	}
 	@Override
 	public Object previous() {
-		String prev = lastReturn.previous.value;
-		lastReturn = lastReturn.previous;
-		cursor--;
-		index = cursor + 1;
-		return prev;
+		if (cursor > 1) {		
+			String prev = lastReturn.previous.value;
+			lastReturn = lastReturn.previous;
+			cursor--;
+			index --;
+			return prev;
+		}
+		else {
+			cursor --;
+			index --;
+			throw new NoSuchElementException();
+		}
+		
 	}
 	@Override
 	public int nextIndex() {
-		
 		return index + 1;
 	}
 	@Override
@@ -141,7 +150,7 @@ public class LinkedList implements ListIterator {
 	}
 	@Override
 	public void set(Object e) {
-		set((String) e);
+		set(index,(String) e);
 	}
 	@Override
 	public void add(Object e) {
