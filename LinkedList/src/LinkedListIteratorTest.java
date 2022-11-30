@@ -83,7 +83,8 @@ public class LinkedListIteratorTest extends TestCase {
         
     }
     
-    public void testSet() {
+    @SuppressWarnings("unchecked")
+	public void testSet() {
     	
         LinkedList list = new LinkedList();
         list.add("zero");
@@ -100,9 +101,10 @@ public class LinkedListIteratorTest extends TestCase {
         assertEquals("two",  i.next());
 
         //set should replace the last element returned by next() or previous()
+        assertEquals(3, i.nextIndex());
         i.set("TWO");
         assertEquals("TWO", list.get(2));        
-        
+        assertEquals(3, i.nextIndex());
        //cursor should be between 2 and 3; a previous() should return value at 2
         assertEquals("TWO",  i.previous());
         //cursor should be between 1 and 2; a previous() should return value at 1

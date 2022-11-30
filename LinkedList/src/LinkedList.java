@@ -2,12 +2,14 @@ import java.util.ListIterator;
 import java.util.NoSuchElementException;
 
 public class LinkedList implements ListIterator {
-	private int size = 0;
-	private int cursor = 0;
-	private int index = -1;
+	private int size = 0;	
 	private Node firstNode;
-	private Node lastReturn;
 	
+	//ListIterator
+	private int index = -1;
+	private int cursor = 0;
+	private Node lastReturn;
+	private boolean n = true;
 	
 	
 	
@@ -97,20 +99,30 @@ public class LinkedList implements ListIterator {
 	}
 	@Override
 	public Object next() {
+		if(n) {
+			n = true;
+			if(cursor < size) {		
+				String next = lastReturn.next.value;
+				lastReturn = lastReturn.next;
+				cursor++;
+				index ++;
+			
+				return next;
+			}
+			else {
+				cursor++;
+				index ++;
+				lastReturn = new Node(null,lastReturn, null);
+				
+				throw new NoSuchElementException();
+			}
+		}
+		else { 
+			cursor++;
+			n = true ;
+			return lastReturn;
+		}
 		
-		if(cursor < size) {		
-			String next = lastReturn.next.value;
-			lastReturn = lastReturn.next;
-			cursor++;
-			index ++;
-			return next;
-		}
-		else {
-			cursor++;
-			index ++;
-			lastReturn = new Node(null,lastReturn, null);
-			throw new NoSuchElementException();
-		}
 			
 	}
 	@Override
@@ -120,19 +132,27 @@ public class LinkedList implements ListIterator {
 	}
 	@Override
 	public Object previous() {
-		if (cursor > 1) {		
-			String prev = lastReturn.previous.value;
-			lastReturn = lastReturn.previous;
-			cursor--;
-			index --;
-			return prev;
+		if(n) {
+			n = false;
+			if (cursor > 1) {		
+				String prev = lastReturn.previous.value;
+				lastReturn = lastReturn.previous;
+				cursor--;
+				index --;
+				return prev;
+			}
+			else {
+				cursor --;
+				index --;
+			
+				throw new NoSuchElementException();
+			}
 		}
 		else {
-			cursor --;
-			index --;
-			throw new NoSuchElementException();
+			cursor--;
+			n = false;
+			return lastReturn.value;	
 		}
-		
 	}
 	@Override
 	public int nextIndex() {
