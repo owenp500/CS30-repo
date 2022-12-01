@@ -109,11 +109,7 @@ public class LinkedList implements ListIterator {
 			
 				return next;
 			}
-			else {
-				cursor++;
-				index++;
-				lastReturn = new Node(null,lastReturn, null);
-				
+			else {	
 				throw new NoSuchElementException();
 			}
 		}
