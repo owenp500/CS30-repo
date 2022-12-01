@@ -111,7 +111,7 @@ public class LinkedList implements ListIterator {
 			}
 			else {
 				cursor++;
-				index ++;
+				index++;
 				lastReturn = new Node(null,lastReturn, null);
 				
 				throw new NoSuchElementException();
