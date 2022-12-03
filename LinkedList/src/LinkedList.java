@@ -1,6 +1,8 @@
 import java.util.ListIterator;
 import java.util.NoSuchElementException;
 
+import javax.swing.LayoutStyle;
+
 public class LinkedList implements ListIterator {
 	private int size = 0;	
 	private Node firstNode;
@@ -9,7 +11,7 @@ public class LinkedList implements ListIterator {
 	private int index = -1;
 	private int cursor = 0;
 	private Node lastReturn;
-	private boolean n = true;
+	private boolean lastResultNext = true;
 	
 	
 	
@@ -37,7 +39,13 @@ public class LinkedList implements ListIterator {
 				for(int j = 0; j < i - 1; j++) {
 					targetNode = targetNode.next;
 				}
-				targetNode.next = new Node(string, targetNode, null);
+				if(i == size) {
+					targetNode.next = new Node(string, targetNode, null);
+				}
+				else {
+					targetNode.next.previous = new Node(string, targetNode, targetNode.next);
+					targetNode.next = targetNode.next.previous;
+				}
 			}
 			size++;
 		}		
@@ -99,8 +107,7 @@ public class LinkedList implements ListIterator {
 	}
 	@Override
 	public Object next() {
-		if(n) {
-			n = true;
+		if(lastResultNext) {
 			if(cursor < size) {		
 				String next = lastReturn.next.value;
 				lastReturn = lastReturn.next;
@@ -115,7 +122,7 @@ public class LinkedList implements ListIterator {
 		}
 		else { 
 			cursor++;
-			n = true ;
+			lastResultNext = true;			
 			return lastReturn;
 		}
 		
@@ -123,14 +130,13 @@ public class LinkedList implements ListIterator {
 	}
 	@Override
 	public boolean hasPrevious() {
-		
 		return lastReturn.previous != null;
 	}
 	@Override
 	public Object previous() {
-		if(n) {
-			n = false;
-			if (cursor > 1) {		
+		if(!lastResultNext) {
+			lastResultNext = false;
+			if (cursor > 0) {		
 				String prev = lastReturn.previous.value;
 				lastReturn = lastReturn.previous;
 				cursor--;
@@ -138,41 +144,43 @@ public class LinkedList implements ListIterator {
 				return prev;
 			}
 			else {
-				cursor --;
-				index --;
-			
 				throw new NoSuchElementException();
 			}
 		}
 		else {
 			cursor--;
-			n = false;
+			lastResultNext = false;
 			return lastReturn.value;	
 		}
 	}
 	@Override
 	public int nextIndex() {
-		return index + 1;
+		return cursor;
 	}
 	@Override
-	public int previousIndex() {
-		
-		return index - 1;
+	public int previousIndex() {		
+		return cursor - 1;
 	}
 	@Override
 	public void remove() {
-		
-		
+		remove(index);
+		cursor --;
+		index --;
 	}
 	@Override
-	public void set(Object e) {
-		set(index,(String) e);
+	public void set(Object value ) {
+		set(index,(String) value);
 	}
 	@Override
-	public void add(Object e) {
-		
+	public void add(Object value) {
+		add(cursor, (String) value);
+		lastReturn = lastReturn.next;
+		index += (lastResultNext) ? 1: 0;
+		lastResultNext =  true;
+		cursor++;
 	}
 
+	@SuppressWarnings("rawtypes")
 	public ListIterator listIterator() {
 		lastReturn = new Node(null,null,firstNode);
 		return this;
