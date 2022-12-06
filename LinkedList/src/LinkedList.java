@@ -12,6 +12,7 @@ public class LinkedList implements ListIterator {
 	private int cursor = 0;
 	private Node lastReturn;
 	private boolean lastResultNext = true;
+	private boolean nxtprvCalled = false;
 	
 	
 	
@@ -20,6 +21,7 @@ public class LinkedList implements ListIterator {
 	}
 	public void add(String string) {
 		add(size, string);
+		nxtprvCalled = false;
 	}
 	public void add(int i, String string) {
 		if(i > size || i < 0) {
@@ -72,21 +74,26 @@ public class LinkedList implements ListIterator {
 		return targetNode.value;
 	}
 	public void remove(int i) {
-		Node targetNode = firstNode;
-		for (int j = 0; j < i; j++) {
-			targetNode = targetNode.next;
-		}		
-		if(targetNode.previous != null) {
-			targetNode.previous.next = targetNode.next;
+		if(nxtprvCalled) {
+			Node targetNode = firstNode;
+			for (int j = 0; j < i; j++) {
+				targetNode = targetNode.next;
+			}		
+			if(targetNode.previous != null) {
+				targetNode.previous.next = targetNode.next;
+			}
+			else {
+				firstNode = targetNode.next;
+			}
+			if(targetNode.next != null) {
+				targetNode.next.previous = targetNode.previous;
+			}
+			size--;
+			nxtprvCalled = false;
 		}
-		else {
-			firstNode = targetNode.next;
-		}
-		if(targetNode.next != null) {
-			targetNode.next.previous = targetNode.previous;
-		}
-		size--;
+		else { throw new IllegalStateException(); }
 	}
+		
 	public void clear() {
 		firstNode = null;
 		size = 0;
@@ -107,6 +114,7 @@ public class LinkedList implements ListIterator {
 	}
 	@Override
 	public Object next() {
+		nxtprvCalled = true;
 		if(lastResultNext) {
 			if(cursor < size) {		
 				String next = lastReturn.next.value;
@@ -123,7 +131,7 @@ public class LinkedList implements ListIterator {
 		else { 
 			cursor++;
 			lastResultNext = true;			
-			return lastReturn;
+			return lastReturn.value;
 		}
 		
 			
@@ -134,6 +142,7 @@ public class LinkedList implements ListIterator {
 	}
 	@Override
 	public Object previous() {
+		nxtprvCalled = true;
 		if(!lastResultNext) {
 			lastResultNext = false;
 			if (cursor > 0) {		
@@ -164,12 +173,16 @@ public class LinkedList implements ListIterator {
 	@Override
 	public void remove() {
 		remove(index);
+		nxtprvCalled = false;
 		cursor --;
 		index --;
 	}
 	@Override
 	public void set(Object value ) {
+		if(nxtprvCalled) {
 		set(index,(String) value);
+		}
+		else {throw new IllegalStateException(); }
 	}
 	@Override
 	public void add(Object value) {
@@ -178,6 +191,7 @@ public class LinkedList implements ListIterator {
 		index += (lastResultNext) ? 1: 0;
 		lastResultNext =  true;
 		cursor++;
+		nxtprvCalled = false;
 	}
 
 	@SuppressWarnings("rawtypes")
